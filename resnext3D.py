@@ -213,7 +213,7 @@ class ResNet(nn.Module):
         return x
 
 
-def generate_model(model_depth, **kwargs):
+def generate_resnet_model(model_depth, **kwargs):
     assert model_depth in [10, 18, 34, 50, 101, 152, 200]
 
     if model_depth == 10:
@@ -242,7 +242,6 @@ def partialclass(cls, *args, **kwargs):
 
 # ResNeXt
 
-import math
 from functools import partial
 
 import torch
@@ -295,7 +294,7 @@ class ResNeXt(ResNet):
         self.fc = nn.Linear(cardinality * 32 * block.expansion, n_classes)
 
 
-def generate_model(model_depth, **kwargs):
+def generate_resnextmodel(model_depth, **kwargs):
     assert model_depth in [50, 101, 152, 200]
 
     if model_depth == 50:
