@@ -291,7 +291,7 @@ class ResNeXt(ResNet):
 
 
 def generate_resnext_model(model_depth, **kwargs):
-    assert model_depth in [50, 101, 152, 200]
+    assert model_depth in [10, 18, 50, 101, 152, 200]
 
     def get_inplanes():
         return [128, 256, 512, 1024]
