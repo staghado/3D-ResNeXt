@@ -295,8 +295,16 @@ def generate_resnext_model(model_depth, **kwargs):
 
     def get_inplanes():
         return [128, 256, 512, 1024]
-
-    if model_depth == 50:
+    
+    ## added : not sure they work
+    if model_depth == 10:
+        model = ResNeXt(ResNeXtBottleneck, [1, 1, 1, 1], get_inplanes(),
+                        **kwargs)
+    elif model_depth == 18:
+        model = ResNeXt(ResNeXtBottleneck, [2, 2, 2, 2], get_inplanes(),
+                        **kwargs)
+        
+    elif model_depth == 50:
         model = ResNeXt(ResNeXtBottleneck, [3, 4, 6, 3], get_inplanes(),
                         **kwargs)
     elif model_depth == 101:
