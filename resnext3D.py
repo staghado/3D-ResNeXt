@@ -6,10 +6,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-def get_inplanes():
-    return [64, 128, 256, 512]
-
-
 def conv3x3x3(in_planes, out_planes, stride=1):
     return nn.Conv3d(in_planes,
                      out_planes,
@@ -216,6 +212,9 @@ class ResNet(nn.Module):
 def generate_resnet_model(model_depth, **kwargs):
     assert model_depth in [10, 18, 34, 50, 101, 152, 200]
 
+    def get_inplanes():
+        return [64, 128, 256, 512]
+
     if model_depth == 10:
         model = ResNet(BasicBlock, [1, 1, 1, 1], get_inplanes(), **kwargs)
     elif model_depth == 18:
@@ -247,9 +246,6 @@ from functools import partial
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
-def get_inplanes():
-    return [128, 256, 512, 1024]
 
 
 class ResNeXtBottleneck(Bottleneck):
@@ -296,6 +292,9 @@ class ResNeXt(ResNet):
 
 def generate_resnextmodel(model_depth, **kwargs):
     assert model_depth in [50, 101, 152, 200]
+
+    def get_inplanes():
+        return [128, 256, 512, 1024]
 
     if model_depth == 50:
         model = ResNeXt(ResNeXtBottleneck, [3, 4, 6, 3], get_inplanes(),
