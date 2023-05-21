@@ -290,7 +290,7 @@ class ResNeXt(ResNet):
         self.fc = nn.Linear(cardinality * 32 * block.expansion, n_classes)
 
 
-def generate_resnextmodel(model_depth, **kwargs):
+def generate_resnext_model(model_depth, **kwargs):
     assert model_depth in [50, 101, 152, 200]
 
     def get_inplanes():
