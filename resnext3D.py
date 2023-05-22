@@ -65,7 +65,7 @@ class Bottleneck(nn.Module):
         self.bn1 = nn.BatchNorm3d(planes)
         self.conv2 = conv3x3x3(planes, planes, stride)
         self.bn2 = nn.BatchNorm3d(planes)
-        self.conv3 = conv1x1x1(planes, planes * self.expansion)
+        self.conv3 = conv1x1x1(planes, planes * self.expansion, stride)
         self.bn3 = nn.BatchNorm3d(planes * self.expansion)
         self.relu = nn.ReLU(inplace=True)
         self.downsample = downsample
@@ -87,7 +87,7 @@ class Bottleneck(nn.Module):
 
         if self.downsample is not None:
             residual = self.downsample(x)
-
+        #print(out.shape, residual.shape)
         out += residual
         out = self.relu(out)
 
@@ -125,7 +125,7 @@ class ResNet(nn.Module):
                                        layers[0],
                                        shortcut_type,
                                        stride=(1, 1, 1),
-                                       downsample=False)
+                                       downsample=True) ## fix in order to make it work
         self.layer2 = self._make_layer(block,
                                        block_inplanes[1],
                                        layers[1],
@@ -236,7 +236,7 @@ def partialclass(cls, *args, **kwargs):
 # ResNeXt
 
 class ResNeXtBottleneck(Bottleneck):
-    expansion = 2
+    expansion = 1
 
     def __init__(self, in_planes, planes, cardinality, stride=1,
                  downsample=None):
@@ -276,8 +276,8 @@ def generate_resnext_model(model_depth, **kwargs):
     assert model_depth in [10, 18, 50, 101, 152, 200]
 
     def get_inplanes():
-        return [128, 256, 512, 1024]
-        #return [64, 128, 256, 512]
+        #return [128, 256, 512, 1024]
+        return [64, 128, 256, 512]
     
     ## added : not sure they work
     if model_depth == 10:
