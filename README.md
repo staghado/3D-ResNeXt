@@ -1,23 +1,15 @@
-# 3D ResNeXt: Adapting ResNeXt to the 3D Case
+# 3D ResNeXt: ResNeXt but with 3D convolutions
 
-This repository contains code and resources for adapting the ResNeXt architecture to the 3D case. 
-
-## Table of Contents
-- [Motivation](#motivation)
-- [Model Architecture](#model-architecture)
-- [Usage](#usage)
-- [Citation](#citation)
+This repository contains code for adapting the ResNeXt architecture to the 3D case. 
 
 ## Motivation
 
 3D data is prevalent in various domains, such as medical imaging, computer vision, and more. 
 Adapting convolutional neural networks (CNNs) to handle 3D data effectively is crucial. 
-This repository aims to provide a 3D adaptation of the ResNeXt architecture to address this need.
-
+This repository aims to provide a 3D adaptation of the ResNeXt architecture.
 ## Model Architecture
 
 The 3D ResNeXt architecture is based on the original ResNeXt but tailored to process 3D volumes. 
-It leverages the concept of cardinality and group convolutions to enhance the model's representational power.
 
 For detailed information about the architecture, please refer to the original paper [Aggregated Residual Transformations for Deep Neural Networks](https://arxiv.org/pdf/1611.05431.pdf).
 ## Usage
